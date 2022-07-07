@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //uncomment if deploy to heroku
-        http.cors().configurationSource(configurationSource()).and()
+        http.csrf().disable().cors().configurationSource(configurationSource()).and()
                 .requiresChannel()
                 .anyRequest()
                 .requiresSecure();
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests().antMatchers("/Buyer/registrasi",
-                "/swagger-ui.html/**", "/refresh-token", "/user/display", "/barang/{tipeBarang}", "/barang", "/detail-barang/{barangId}","/refresh-token").permitAll();
+                "/swagger-ui.html/**", "/refresh-token", "/user/display", "/barang/{tipeBarang}", "/barang", "/detail-barang/{barangId}", "/refresh-token").permitAll();
 
         http.authorizeRequests().antMatchers("/login/**").permitAll();
 
